@@ -1,21 +1,27 @@
-// Write your package code here!
+if (process.env.NODE_ENV == 'development'){
+  var bower = Npm.require("bower");
+  var path = Npm.require('path');
+  var bowerCommands = ["info", "install", "link", "list", "lookup", "prune",
+  "register", "search", "update", "uninstall"];
 
-function importTag(path) {
-  return '<link rel="import" href="' + path + '">';
-}
+  Bower = {};
 
-function PolymerElementsCompiler() {}
-PolymerElementsCompiler.prototype.processFilesForTarget = function (files) {
-  files.forEach(function (file) {
-    console.log("import polymer-meteor-elements");
-    // add assets to head [TODO] Vucanize
-    file.addHtml({ section: 'head', data: importTag("/packages/pixto_polymer-meteor-elements/meteor-elements/meteor-elements.html") });
+  // Wrap every asynchronus bower command with `Meteor.wrapAsync`
+  _.forEach(bowerCommands, function (command) {
+    Bower[command] = Meteor.wrapAsync(function() {
+      argsArray = _.toArray(arguments);
+      var callback = argsArray.pop();
+      bower.commands[command]
+      .apply(this, argsArray)
+      .on('end', function(res) { callback(null, res); })
+      .on('error', function(err) { callback(err, null); });
+    });
   });
-};
 
-Plugin.registerCompiler({
-  filenames: ["config.polymer"],
-  archMatching: 'web'
-}, function(){
-  return new PolymerElementsCompiler();
-});
+  var dir = path.join(path.relative(process.cwd(), process.env.PWD), 'public/bower_components');
+  var localCache = _.values(Bower.list(null, {offline: true, directory: dir}).pkgMeta.dependencies);
+  if (!_.contains(localCache, ['pixto/meteor-elements#~0.1.0'])){
+    console.log('installing polymer-meteor-elements');
+    Bower.install(['pixto/meteor-elements#~0.1.0'], {save: true}, {directory: dir});
+  }
+}

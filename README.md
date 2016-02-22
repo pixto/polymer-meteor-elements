@@ -62,7 +62,7 @@ Polymer meteor elements documentation is available here :
 
 ### Polymer Installation
 
-This package doesn't handle Polymer installation. For that we use bower with mquandalle:bower package :
+This package doesn't handle Polymer installation. For that you can use bower with mquandalle:bower package :
 ```
 meteor add mquandalle:bower
 ```
