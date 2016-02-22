@@ -9,7 +9,7 @@ PolymerElementsCompiler.prototype.processFilesForTarget = function (files) {
   files.forEach(function (file) {
     console.log("import polymer-meteor-elements");
     // add assets to head [TODO] Vucanize
-    file.addHtml({ section: 'head', data: importTag("/packages/eskan_polymer-meteor-elements/meteor-elements/meteor-elements.html") });
+    file.addHtml({ section: 'head', data: importTag("/packages/pixto_polymer-meteor-elements/meteor-elements/meteor-elements.html") });
   });
 };
 
