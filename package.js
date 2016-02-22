@@ -29,6 +29,6 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('polymer-meteor-elements');
-  api.addFiles('polymer-meteor-element-tests.js');
+  api.use('pixto:polymer-meteor-elements');
+  api.addFiles('polymer-meteor-elements-tests.js');
 });
