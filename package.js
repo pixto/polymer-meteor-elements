@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'eskan:polymer-meteor-elements',
+  name: 'pixto:polymer-meteor-elements',
   version: '0.1.0',
-  summary: '',
-  git: '',
+  summary: 'Polymer meteor elements',
+  git: 'https://github.com/pixto/polymer-meteor-elements',
   documentation: 'README.md'
 });
 
