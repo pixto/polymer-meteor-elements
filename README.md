@@ -41,6 +41,7 @@ ready : function() {
 ### Leaderboard-polymer
 
 To get the simple structure needs to run meteor element report to the leaderboard example here :
+
 [https://github.com/pixto/polymer-leaderboard](https://github.com/pixto/polymer-leaderboard)
 
 ### Installation
@@ -56,6 +57,8 @@ this file aims to trigger the build plugin that can install head definition to i
 ### Documentation
 
 Polymer meteor elements documentation is available here :
+
+[https://pixto.github.io/polymer-meteor-elements/meteor-elements/](https://pixto.github.io/polymer-meteor-elements/meteor-elements/)
 
 ### Polymer Installation
 
