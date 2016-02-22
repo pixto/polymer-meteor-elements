@@ -41,13 +41,13 @@ ready : function() {
 ### Leaderboard-polymer
 
 To get the simple structure needs to run meteor element report to the leaderboard example here :
-
+[https://github.com/pixto/polymer-leaderboard](https://github.com/pixto/polymer-leaderboard)
 
 ### Installation
 
 1 - Add this package to your project, run:
 ```
-meteor add polymer-meteor-elements
+meteor add pixto:polymer-meteor-elements
 ```
 
 2 - Include an empty **config.polymer** file in the root of your project. (temporary workaround)

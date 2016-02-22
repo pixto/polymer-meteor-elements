@@ -1,6 +1,6 @@
 Package.describe({
   name: 'pixto:polymer-meteor-elements',
-  version: '0.1.1',
+  version: '0.1.2',
   summary: 'Polymer meteor elements',
   git: 'https://github.com/pixto/polymer-meteor-elements',
   documentation: 'README.md'
