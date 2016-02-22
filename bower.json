@@ -1,0 +1,12 @@
+{
+  "name": "docs",
+  "private": true,
+  "main": "index.html",
+  "authors": [
+  ],
+  "license": "MIT",
+  "ignore": [],
+  "dependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}

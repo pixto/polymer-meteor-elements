@@ -1,0 +1,69 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<!--
+A wrapper to meteor Method.call.
+
+Example :
+
+    <meteor-call name="playersByScoreRange" args="[100, 200]" result={{players}}></meteor-call>
+
+    <template is="dom-repeat" items="{{players}}">
+      <div>
+        <span>{{item.name}}</span>
+      </div>
+    </template>
+-->
+<script>
+Polymer({
+  is: 'meteor-call',
+
+  /**
+  * Fired when call has result
+  * @param {object} result
+  * @event meteor-call-result
+  */
+
+  /**
+  * Fired when call has response error
+  * @param {object} error
+  * @event meteor-call-error
+  */
+
+  properties: {
+    /**
+    * Meteor method name to call.
+    */
+    name: {
+      type: String,
+      value: ""
+    },
+    /**
+    * An array of Optional method arguments
+    */
+    args: {
+      type: Array,
+      value: function() { return []; }
+    },
+    /**
+    * An array of Optional method arguments
+    */
+    result: {
+      type: Object,
+      value: function() { return []; },
+      notify : true
+    },
+  },
+  observers: [ '_recall(name, args)' ],
+  _recall : function(name , args) {
+    if(name) {
+      Meteor.apply(name, args, function (error, result) {
+        if(error) {
+          this.fire('meteor-call-error', {error: error});
+        } else {
+          this.result = result;
+          this.fire('meteor-call-result', {result: result});
+        }
+      }.bind(this));
+    }
+  }
+});
+</script>
