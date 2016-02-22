@@ -14,9 +14,10 @@ Package.registerBuildPlugin({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2.1');
   api.use('isobuild:compiler-plugin@1.0.0');
-  api.use('dburles:mongo-collection-instances@0.3.5');
+  api.imply(['tracker','mongo','session','ejson'],'client');
+  api.use('dburles:mongo-collection-instances@0.3.5','client');
   api.addAssets('meteor-elements/meteor-collection.html','client');
   api.addAssets('meteor-elements/meteor-connection.html','client');
   api.addAssets('meteor-elements/meteor-elements.html','client');
