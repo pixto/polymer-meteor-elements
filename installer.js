@@ -1,9 +1,10 @@
 if (process.env.NODE_ENV == 'development'){
   var bower = Npm.require("bower");
   var path = Npm.require('path');
-  var bowerCommands = ["info", "install", "link", "list", "lookup", "prune",
-  "register", "search", "update", "uninstall"];
+  var bowerCommands = ["install", "list"];
 
+  config.dest_dir = process.env.POLYMER_DIR || 'public/bower_components'; 
+  
   Bower = {};
 
   // Wrap every asynchronus bower command with `Meteor.wrapAsync`
@@ -18,10 +19,10 @@ if (process.env.NODE_ENV == 'development'){
     });
   });
 
-  var dir = path.join(path.relative(process.cwd(), process.env.PWD), 'public/bower_components');
+  var dir = path.join(path.relative(process.cwd(), process.env.PWD), config.dest_dir);
   var localCache = _.values(Bower.list(null, {offline: true, directory: dir}).pkgMeta.dependencies);
-  if (!_.contains(localCache, ['pixto/meteor-elements#~0.1.0'])){
-    console.log('installing polymer-meteor-elements');
-    Bower.install(['pixto/meteor-elements#~0.1.0'], {save: true}, {directory: dir});
+  if (!_.contains(localCache, config.pkg)){
+    console.log('installing ' + config.pkg);
+    Bower.install([config.pkg], {save: true}, {directory: dir});
   }
 }

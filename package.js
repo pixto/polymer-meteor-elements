@@ -1,6 +1,6 @@
 Package.describe({
   name: 'pixto:polymer-meteor-elements',
-  version: '0.2.1',
+  version: '0.2.2',
   summary: 'Polymer meteor elements',
   git: 'https://github.com/pixto/polymer-meteor-elements',
   documentation: 'README.md'
@@ -11,7 +11,8 @@ Package.onUse(function(api) {
   api.imply(['tracker','mongo','session','ejson'],'client');
   api.use('dburles:mongo-collection-instances@0.3.5','client');
   api.use('underscore');
-  api.addFiles('polymer-meteor-elements.js', 'server');
+  api.addFiles('config.js', 'server');
+  api.addFiles('installer.js', 'server');
 });
 
 Npm.depends({

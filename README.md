@@ -46,13 +46,10 @@ To get the simple structure needs to run meteor element report to the leaderboar
 
 ### Installation
 
-1 - Add this package to your project, run:
+Add this package to your project, run:
 ```
 meteor add pixto:polymer-meteor-elements
 ```
-
-2 - Include an empty **config.polymer** file in the root of your project. (temporary workaround)
-this file aims to trigger the build plugin that can install head definition to import meteor-elements
 
 ### Documentation
 
