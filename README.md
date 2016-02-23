@@ -59,47 +59,27 @@ Polymer meteor elements documentation is available here :
 
 ### Polymer Installation
 
-This package doesn't handle Polymer installation. For that you can use bower with mquandalle:bower package :
+This package doesn't handle Polymer installation (except its own dependencies).
+
+Default installation directory is (app-root)/public/bower_components but this can be changed with POLYMER_DIR env.
+```bash
+POLYMER_DIR=/private/bower_components
 ```
-meteor add mquandalle:bower
+to install polymer you can use pixto:polymer packages :
+```bash
+meteor add pixto:polymer-iron-elements
+meteor add pixto:polymer-paper-elements
+meteor add pixto:polymer-neon-elements
+meteor add pixto:polymer-gold-elements
+meteor add pixto:polymer-platinium-elements
 ```
-we also use vulcanize to import and 'vulcanize' polymer elements :
-```
+### Import elements
+
+To import your elements you can use [differential:vulcanize](https://github.com/Differential/meteor-vulcanize) to import and 'vulcanize' polymer elements :
+```bash
 meteor add differential:vulcanize
 ```
-Thoose packages need configuration file :
-in **lib/bower.json** :
-```json
-{
-  "name": "Polymer meteor elements project",
-  "version": "0.1.0",
-  "authors": [
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "polymer": "Polymer/polymer#^1.2.4"
-  },
-  "overrides": {
-    "webcomponentsjs": {
-      "main": []
-    }
-  }
-}
-```
-in **lib/.bowerrc** :
-```json
-{
-  "directory":"../public/bower_components"
-}
-```
+
 create a **config.vulcanize** in the root of you project :
 ```json
 {
