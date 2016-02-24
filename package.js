@@ -10,6 +10,6 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.imply(['tracker','mongo','session','ejson'],'client');
   api.use('dburles:mongo-collection-instances@0.3.5','client');
-  api.use('pixto:polymer-installer');
+  api.use('pixto:polymer-installer@0.1.0');
   api.addFiles('install.js', 'server');
 });
