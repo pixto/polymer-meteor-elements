@@ -52,17 +52,18 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
       file.addHtml({ section: 'head', data: importTag});
 
       // add polyfill js script webcomponents-lite.js
+      var polyfillPath = path.relative('/bower_components/' , config.importFile);
       file.addAsset({
-          path: config.polyfill,
-          data: fs.readFileSync(config.directory + '/../' + config.polyfill)
-        });
-      var polyfill = '<script src="' + config.polyfill + '"></script>';
+        path: polyfillPath,
+        data: fs.readFileSync(config.directory + '/../' + config.polyfill)
+      });
+      var polyfill = '<script src="' + polyfillPath + '"></script>';
       file.addHtml({ section: 'head', data: polyfill});
 
       // unlink to polymer dir
       fs.unlinkSync('./public/bower_components');
 
-    }  else {
+    } else {
       // Import web elements
       var importTag = '<link rel="import" href="' + path.relative('/public' , config.importFile) + '">';
       file.addHtml({ section: 'head', data: importTag});

@@ -1,6 +1,6 @@
 Package.describe({
   name: 'pixto:polymer-meteor-elements',
-  version: '0.2.3',
+  version: '0.3.0',
   summary: 'Polymer meteor elements',
   git: 'https://github.com/pixto/polymer-meteor-elements',
   documentation: 'README.md'
@@ -12,7 +12,8 @@ Package.registerBuildPlugin({
     'underscore'
   ],
   npmDependencies: {
-    "vulcanize": "1.14.6"
+    "vulcanize": "1.14.6",
+    "bower": "1.5.2"
   },
   sources: [
     "installer.js",

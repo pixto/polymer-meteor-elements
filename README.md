@@ -51,45 +51,37 @@ Add this package to your project, run:
 meteor add pixto:polymer-meteor-elements
 ```
 
-### Documentation
+and create a config.polymer in you app root :
+```
+{
+  "directory" : ".polymer",
+  "importFile": "/public/components/imports.html",
+  "dependencies" : [
+    "PolymerElements/paper-drawer-panel#1.0.6"
+  ]
+}
+```
+- **directory** : where Polymer and dependencies will be installed (default : .polymer)
+- **importFile** : the file that include your imports
+- **dependencies** : the polymer elements you needs
+
+### What this package do ?
+
+1. it install meteor elements and its dependencies (Polymer/polymer.html) using bower in the directory set in config.polymer
+1. it install dependencies listed in config.polymer
+1. it creates a symlink in public to polymer installation directory
+1. it adds to ***head*** polyfill script and elements import
+
+this behavior is different with the **VULCANIZE=true** environment variable, instead of create a symlink, elements are vulcanized and then import in ***head***. So this way **/public** is free of extra files.
+
+### Elements Documentation
 
 Polymer meteor elements documentation is available here :
 
 [https://pixto.github.io/polymer-meteor-elements/meteor-elements/](https://pixto.github.io/polymer-meteor-elements/meteor-elements/)
 
-### Polymer Installation
 
-This package doesn't handle Polymer installation (except its own dependencies).
 
-Default installation directory is (app-root)/public/bower_components but this can be changed with POLYMER_DIR env.
-```bash
-POLYMER_DIR=/private/bower_components
-```
-to install polymer you can use pixto:polymer packages :
-```bash
-meteor add pixto:polymer-iron-elements
-meteor add pixto:polymer-paper-elements
-meteor add pixto:polymer-neon-elements
-meteor add pixto:polymer-gold-elements
-meteor add pixto:polymer-platinium-elements
-```
-### Import elements
-
-To import your elements you can use [differential:vulcanize](https://github.com/Differential/meteor-vulcanize) to import and 'vulcanize' polymer elements :
-```bash
-meteor add differential:vulcanize
-```
-
-create a **config.vulcanize** in the root of you project :
-```json
-{
-  "polyfill": "/bower_components/webcomponentsjs/webcomponents-lite.min.js",
-  "useShadowDom": false,
-  "imports": [
-    "/components/leaderboard-app.html"
-  ]
-}
-```
 ### Contribute
 
 Please feel free to submit PR, if you submit an issue, please provide a simple project to reproduce it. You can easily modify the leaderboard example.
