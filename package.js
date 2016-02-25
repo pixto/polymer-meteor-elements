@@ -9,7 +9,7 @@ Package.describe({
 Package.registerBuildPlugin({
   name: "polymer-compiler",
   use : [
-    'underscore'
+    "underscore@1.0.4"
   ],
   npmDependencies: {
     "vulcanize": "1.14.6",
