@@ -76,10 +76,9 @@ this behavior is different with the **VULCANIZE=true** environment variable, ins
 
 ### ES2015
 
-With the **VULCANIZE=true** environment variable polymer element are vulcanized (all files in one), then html and javascript are splitted to be CSP compliant with cripser and finally javascript is transform to ES5.
+With the **VULCANIZE=true** environment variable polymer elements are vulcanized (all files in one), then html and javascript are splitted to be CSP compliant with cripser and finally javascript is transform to ES5.
 
-Without VULCANIZE (development mode) files are not transformed so you should use an ES2015 browser compatible.
-
+Without VULCANIZE files are not transformed so you should use an ES2015 browser compatible.
 
 ### Elements Documentation
 
