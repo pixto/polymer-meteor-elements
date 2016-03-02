@@ -42,14 +42,23 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
 
     if(process.env.VULCANIZE) {
 
-      var html = Vulcanize.vulcanizeImport(config.importFile);
-      var filePath = '/vulcanized-' + crypto.createHash('md5').update(html).digest('hex') + '.html';
+      var out = Vulcanize.vulcanizeImport(config.importFile);
+
+      var filePath = '/vulcanized-' + crypto.createHash('md5').update(out.html).digest('hex');
+      // add HTML
       file.addAsset({
-        path: filePath,
-        data: html
+        path: filePath+ '.html',
+        data: out.html
       });
-      var importTag = '<link rel="import" href="' + filePath + '">';
-      file.addHtml({ section: 'head', data: importTag});
+      var importHtmlTag = '<link rel="import" href="' + filePath + '.html' + '">';
+      file.addHtml({ section: 'head', data: importHtmlTag});
+      // add JS
+      file.addAsset({
+        path: filePath+ '.js',
+        data: out.js
+      });
+      var importJsTag = '<script src="' + filePath+ '.js' + '"></script>';
+      file.addHtml({ section: 'head', data: importJsTag});
 
       // add polyfill js script webcomponents-lite.js
       var polyfillPath = path.relative('/bower_components/' , config.importFile);
