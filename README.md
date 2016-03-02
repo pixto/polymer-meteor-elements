@@ -74,6 +74,13 @@ and create a config.polymer in you app root :
 
 this behavior is different with the **VULCANIZE=true** environment variable, instead of create a symlink, elements are vulcanized and then import in ***head***. So this way **/public** is free of extra files.
 
+### ES2015
+
+With the **VULCANIZE=true** environment variable polymer element are vulcanized (all files in one), then html and javascript are splitted to be CSP compliant with cripser and finally javascript is transform to ES5.
+
+Without VULCANIZE (development mode) files are not transformed so you should use an ES2015 browser compatible.
+
+
 ### Elements Documentation
 
 Polymer meteor elements documentation is available here :
