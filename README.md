@@ -80,6 +80,12 @@ With the **VULCANIZE=true** environment variable polymer elements are vulcanized
 
 Without VULCANIZE files are not transformed so you should use an ES2015 browser compatible.
 
+### 404 Import Loop
+
+If a html import is wrong or the file is missing, Meteor serve the default page instead of send HTTP 404. It's a normal behavior, but it can be tricky to resolve because of the http loop.
+To handle this issue in development we log every request that can't be resolved (we don't send 404). So check your console to prevent 404 Loop
+
+
 ### Elements Documentation
 
 Polymer meteor elements documentation is available here :

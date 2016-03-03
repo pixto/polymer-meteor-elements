@@ -27,6 +27,8 @@ Package.registerBuildPlugin({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use("isobuild:compiler-plugin@1.0.0");
+  api.use("webapp",'server');
   api.imply(['tracker','mongo','session','ejson'],'client');
   api.use('dburles:mongo-collection-instances@0.3.5','client');
+  api.addFiles('webhandler.js','server');
 });
