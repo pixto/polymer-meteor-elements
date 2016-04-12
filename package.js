@@ -9,11 +9,10 @@ Package.describe({
 Package.registerBuildPlugin({
   name: "polymer-compiler",
   use : [
-    "underscore@1.0.4",
-    "babel-compiler"
+    "underscore@1.0.4"
   ],
   npmDependencies: {
-    "vulcanize": "1.14.6",
+    "vulcanize": "1.14.8",
     "bower": "1.5.2",
     "crisper": "2.0.1"
   },
