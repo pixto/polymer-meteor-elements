@@ -1,5 +1,6 @@
 var Future = Npm.require("fibers/future");
 var vulcanize = Npm.require("vulcanize");
+global.Promise=Promise;
 var crisper = Npm.require("crisper");
 var babel = Npm.require("babel-core");
 

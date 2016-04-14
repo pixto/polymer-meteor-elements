@@ -1,4 +1,4 @@
-var meteorElements = 'pixto/meteor-elements#~0.1.0';
+var meteorElements = 'pixto/meteor-elements#~0.2.0';
 
 var fs = Npm.require('fs');
 var path = Npm.require('path');
@@ -74,7 +74,7 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
 
     } else {
       // Import web elements
-      var importTag = '<link rel="import" href="' + path.relative('/public' , config.importFile) + '">';
+      var importTag = '<link rel="import" href="/' + path.relative('/public' , config.importFile) + '">';
       file.addHtml({ section: 'head', data: importTag});
 
       var polyfill = '<script src="' + config.polyfill + '"></script>';
