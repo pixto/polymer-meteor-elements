@@ -24,8 +24,9 @@ Vulcanize.vulcanizeImport = function(importFile) {
       // crisper seperate html and js
       var out = crisper({
         source: html,
-        scriptInHead: false
+        onlySplit: true
       });
+
       try {
         out.js = babel.transform(out.js, {
           ast: false,

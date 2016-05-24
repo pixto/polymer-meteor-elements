@@ -42,32 +42,40 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
 
     if(process.env.VULCANIZE) {
 
-      var out = Vulcanize.vulcanizeImport(config.importFile);
-
-      var filePath = '/vulcanized-' + crypto.createHash('md5').update(out.html).digest('hex');
-      // add HTML
-      file.addAsset({
-        path: filePath+ '.html',
-        data: out.html
-      });
-      var importHtmlTag = '<link rel="import" href="' + filePath + '.html' + '">';
-      file.addHtml({ section: 'head', data: importHtmlTag});
-      // add JS
-      file.addAsset({
-        path: filePath+ '.js',
-        data: out.js
-      });
-      var importJsTag = '<script src="' + filePath+ '.js' + '"></script>';
-      file.addHtml({ section: 'head', data: importJsTag});
 
       // add polyfill js script webcomponents-lite.js
-      var polyfillPath = path.relative('/bower_components/' , config.importFile);
+      var polyfillPath = path.relative('/bower_components/' , config.polyfill);
       file.addAsset({
         path: polyfillPath,
         data: fs.readFileSync(config.directory + '/../' + config.polyfill)
       });
       var polyfill = '<script src="' + polyfillPath + '"></script>';
       file.addHtml({ section: 'head', data: polyfill});
+
+      var out = Vulcanize.vulcanizeImport(config.importFile);
+
+      var filePath = '/vulcanized-' + crypto.createHash('md5').update(out.html).digest('hex');
+      // add HTML
+
+      var importJsTag = '<script src="' + filePath+ '.js' + '"></script></body>';
+      var _html = out.html.replace('</body>',importJsTag );
+      file.addAsset({
+        path: filePath+ '.html',
+        data: _html
+      });
+      var importHtmlTag = '<link rel="import" href="' + filePath + '.html' + '">';
+      file.addHtml({ section: 'head', data: importHtmlTag});
+
+
+      // add JS
+      file.addAsset({
+        path: filePath+ '.js',
+        data: out.js
+      });
+      /*
+      var importJsTag = '<script src="' + filePath+ '.js' + '"></script>';
+      file.addHtml({ section: 'head', data: importJsTag});
+      */
 
       // unlink to polymer dir
       fs.unlinkSync('./public/bower_components');
