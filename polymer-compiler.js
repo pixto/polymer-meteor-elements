@@ -1,4 +1,4 @@
-var meteorElements = 'pixto/meteor-elements#~0.2.0';
+var meteorElements = 'pixto/meteor-elements#^0.2.0';
 
 var fs = Npm.require('fs');
 var path = Npm.require('path');
