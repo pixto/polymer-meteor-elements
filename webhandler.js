@@ -1,7 +1,7 @@
 // The idea is to log 404 files to know when an import is unresolved
 
 Meteor.startup(function () {
-  if(process.env.NODE_ENV == 'development') {
+  if(process.env.HTTP_404) {
     const path = Npm.require('path');
     const fs = Npm.require('fs');
     const uri = Npm.require('url');

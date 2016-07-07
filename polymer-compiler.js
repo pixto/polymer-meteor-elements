@@ -1,4 +1,4 @@
-var meteorElements = 'pixto/meteor-elements#^0.2.0';
+var meteorElements = 'pixto/meteor-elements#^0.2.2';
 
 var fs = Npm.require('fs');
 var path = Npm.require('path');
@@ -49,15 +49,17 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
         path: polyfillPath,
         data: fs.readFileSync(config.directory + '/../' + config.polyfill)
       });
-      var polyfill = '<script src="' + polyfillPath + '"></script>';
+      var polyfill = '<script src="/' + polyfillPath + '" async></script>';
       file.addHtml({ section: 'head', data: polyfill});
 
-      var out = Vulcanize.vulcanizeImport(config.importFile);
 
-      var filePath = '/vulcanized-' + crypto.createHash('md5').update(out.html).digest('hex');
+      var out = Vulcanize.vulcanizeImport(config.importFile);
+      var hash = crypto.createHash('md5').update(out.html).digest('hex');
+      console.log('Polymer vulcanized hash : ', hash);
+      var filePath = '/vulcanized-' + hash;
       // add HTML
 
-      var importJsTag = '<script src="' + filePath+ '.js' + '"></script></body>';
+      var importJsTag = '<script src="' + filePath+ '.js' + '" async></script></body>';
       var _html = out.html.replace('</body>',importJsTag );
       file.addAsset({
         path: filePath+ '.html',
@@ -85,7 +87,7 @@ PolymerCompiler.prototype.processFilesForTarget = function(files) {
       var importTag = '<link rel="import" href="/' + path.relative('/public' , config.importFile) + '">';
       file.addHtml({ section: 'head', data: importTag});
 
-      var polyfill = '<script src="' + config.polyfill + '"></script>';
+      var polyfill = '<script src="' + config.polyfill + '" async></script>';
       file.addHtml({ section: 'head', data: polyfill});
     }
   });

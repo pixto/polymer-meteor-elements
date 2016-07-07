@@ -20,7 +20,7 @@ BowerInstaller.install  = function(pkg, dest_dir) {
   var localCache = _.values(bowerCommand("list" , null, {offline: true, directory: dir}).pkgMeta.dependencies);
   if (!_.contains(localCache, pkg)){
     console.log("=> installing " + pkg + "...");
-    bowerCommand("install", [pkg], {save: true, "force-latest" : true }, {directory: dir});
+    bowerCommand("install", [pkg], { }, {directory: dir});
   }
 
 }

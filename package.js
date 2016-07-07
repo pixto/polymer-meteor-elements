@@ -15,7 +15,8 @@ Package.registerBuildPlugin({
   npmDependencies: {
     "vulcanize": "1.14.8",
     "bower": "1.5.2",
-    "crisper": "2.0.2"
+    "crisper": "2.0.2",
+    "babel-core": "6.9.1"
   },
   sources: [
     "installer.js",
