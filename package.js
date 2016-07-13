@@ -1,6 +1,6 @@
 Package.describe({
   name: 'pixto:polymer-meteor-elements',
-  version: '0.3.2',
+  version: '0.4.0',
   summary: 'Polymer meteor elements',
   git: 'https://github.com/pixto/polymer-meteor-elements',
   documentation: 'README.md'
@@ -9,7 +9,7 @@ Package.describe({
 Package.registerBuildPlugin({
   name: "polymer-compiler",
   use : [
-    "underscore@1.0.4",
+    "underscore",
     "ecmascript"
   ],
   npmDependencies: {
@@ -28,6 +28,8 @@ Package.registerBuildPlugin({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
   api.use("isobuild:compiler-plugin@1.0.0");
+  api.use("ecmascript");
+  api.use("underscore");
   api.use("webapp",'server');
   api.imply(['tracker','mongo','session','ejson'],'client');
   api.use('dburles:mongo-collection-instances@0.3.5','client');
